@@ -137,14 +137,14 @@ def get_params(input_length):
 
 # Load data from IBM COS
 
-# cos_client = ibm_boto3.client(service_name='s3',
-#                                 ibm_api_key_id='LH5kp4cMyNvSjd0B8nuCQtcvLSManSoijLA9RytKXSdH',
-#                                 ibm_auth_endpoint="https://iam.cloud.ibm.com/identity/token",
-#                                 config=Config(signature_version='oauth',connect_timeout=600, read_timeout=600),
-#                                 endpoint_url='https://s3.direct.us-south.cloud-object-storage.appdomain.cloud')
-# body = cos_client.get_object(Bucket='gig-workers-fair-pay-monitor', Key='combined_gig_worker_data.json')['Body']
-# df_combined = pd.read_json(body, orient='records')
-df_combined = pd.read_json('combined_gig_worker_data.json', orient='records')
+cos_client = ibm_boto3.client(service_name='s3',
+                                ibm_api_key_id='LH5kp4cMyNvSjd0B8nuCQtcvLSManSoijLA9RytKXSdH',
+                                ibm_auth_endpoint="https://iam.cloud.ibm.com/identity/token",
+                                config=Config(signature_version='oauth',connect_timeout=600, read_timeout=600),
+                                endpoint_url='https://s3.direct.us-south.cloud-object-storage.appdomain.cloud')
+body = cos_client.get_object(Bucket='gig-workers-fair-pay-monitor', Key='combined_gig_worker_data.json')['Body']
+df_combined = pd.read_json(body, orient='records')
+# df_combined = pd.read_json('combined_gig_worker_data.json', orient='records')
 df_combined["week_start"] = pd.to_datetime(df_combined["week_start"])
 df_combined = df_combined[df_combined["gross_pay"].notna()].sort_values(by="week_start")
 
