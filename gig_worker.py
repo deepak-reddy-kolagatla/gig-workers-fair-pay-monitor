@@ -200,7 +200,7 @@ def user_data_next_week_forcast():
 
 if __name__ == "__main__":
     # data_generate()
-    ngrok.set_auth_token("2wcasOHhuwchRDpqv4lHNoECAes_4Gj93pGvbvrWojekAbmBw")
-    http_tunnel = ngrok.connect(8000)
-    print(f'ngrok tunnel: {http_tunnel.public_url}')
-    app.run(host='0.0.0.0',port=8000,debug=True)
+    # ngrok.set_auth_token("2wcasOHhuwchRDpqv4lHNoECAes_4Gj93pGvbvrWojekAbmBw")
+    # http_tunnel = ngrok.connect(8000)
+    # print(f'ngrok tunnel: {http_tunnel.public_url}')
+    app.run(host='0.0.0.0',port=8532,debug=True)
